@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+
+    <PackageId>Mb.Common</PackageId>
+    <Version>1.0.2</Version>
+    <Authors>mikebelluk</Authors>
+    <Company></Company>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Description>A collection of common extension methods and helper classes that have been collected over the years. These come from various projects and sources, many of which I cannot take credit for.</Description>
+    <PackageProjectUrl>https://github.com/mikebelluk/Mb.Common</PackageProjectUrl>
+    <PackageLicenseFile>License.txt</PackageLicenseFile>
+    <RepositoryUrl>https://github.com/mikebelluk/Mb.Common</RepositoryUrl>
+
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="License.txt">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>
