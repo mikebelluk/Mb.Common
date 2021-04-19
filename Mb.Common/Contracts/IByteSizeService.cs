@@ -5,6 +5,8 @@
 	/// </summary>
 	public interface IByteSizeService
 	{
+		#region Convert to Bytes
+
 		/// <summary>
 		/// Converts bytes to KB
 		/// </summary>
@@ -32,5 +34,39 @@
 		/// <param name="bytes">The number of bytes</param>
 		/// <returns>The TB</returns>
 		long AsTB(long bytes);
+
+		#endregion Convert to Bytes
+
+		#region Convert from Bytes
+
+		/// <summary>
+		/// Converts the specified number of bytes to KB
+		/// </summary>
+		/// <param name="bytes">The number of bytes to convert</param>
+		/// <returns>The value in KB</returns>
+		double ToKB(long bytes);
+
+		/// <summary>
+		/// Converts the specified number of bytes to MB
+		/// </summary>
+		/// <param name="bytes">The number of bytes to convert</param>
+		/// <returns>The value in MB</returns>
+		double ToMB(long bytes);
+
+		/// <summary>
+		/// Converts the specified number of bytes to GB
+		/// </summary>
+		/// <param name="bytes">The number of bytes to convert</param>
+		/// <returns>The value in GB</returns>
+		double ToGB(long bytes);
+
+		/// <summary>
+		/// Converts the specified number of bytes to TB
+		/// </summary>
+		/// <param name="bytes">The number of bytes to convert</param>
+		/// <returns>The value in TB</returns>
+		double ToTB(long bytes);
+
+		#endregion Convert from Bytes
 	}
 }
