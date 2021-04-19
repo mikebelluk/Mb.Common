@@ -4,7 +4,7 @@
     <TargetFramework>net5.0</TargetFramework>
 
     <PackageId>Mb.Common</PackageId>
-    <Version>2.0.0</Version>
+    <Version>3.0.0</Version>
     <Authors>mikebelluk</Authors>
     <Company></Company>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -12,6 +12,8 @@
     <PackageProjectUrl>https://github.com/mikebelluk/Mb.Common</PackageProjectUrl>
     <PackageLicenseFile>License.txt</PackageLicenseFile>
     <RepositoryUrl>https://github.com/mikebelluk/Mb.Common</RepositoryUrl>
+    <AssemblyVersion>5.0.0.0</AssemblyVersion>
+    <FileVersion>5.0.0.0</FileVersion>
 
   </PropertyGroup>
 
