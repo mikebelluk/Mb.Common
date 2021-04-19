@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
-using Mb.Common.Helpers;
+using Mb.Common.Contracts.Services.IO;
+using Mb.Common.Services.IO;
 
 namespace Mb.Common.Extensions
 {
@@ -8,6 +9,12 @@ namespace Mb.Common.Extensions
 	/// </summary>
 	public static class AssemblyExtensions
 	{
+		#region Static Fields
+
+		private static readonly IFileSystemService _fileSystemService = new FileSystemService();
+
+		#endregion
+
 		/// <summary>
 		/// Gets the directory for the specified assembly
 		/// </summary>
@@ -15,7 +22,7 @@ namespace Mb.Common.Extensions
 		/// <returns>The directory</returns>
 		public static string GetDirectory(this Assembly assembly)
 		{
-			return FileSystemHelper.GetApplicationPath(assembly);
+			return _fileSystemService.GetAssemblyDirectory(assembly);
 		}
 	}
 }

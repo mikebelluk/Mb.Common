@@ -1,14 +1,22 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Mb.Common.Contracts.Services.HumanReadable;
 using Mb.Common.Extensions;
-using Mb.Common.Helpers;
+using Mb.Common.Services;
+using Mb.Common.Services.HumanReadable;
 using Xunit;
 
 namespace Mb.Common.Tests.Extensions
 {
 	public class DateTimeExtensionsTests
 	{
+		#region Static Fields
+
+		private static readonly IHumanReadableService _humanReadable = new HumanReadableService();
+
+		#endregion
+
 		#region Between
 
 		[Fact()]
@@ -66,7 +74,7 @@ namespace Mb.Common.Tests.Extensions
 		[InlineData(31104000, "one year ago")]
 		public void ToReadableTime_TheoryReturnsCorrectValue(int secondsAgo, string expected)
 		{
-			var result = HumanReadableHelper.DateToHumanReadable(DateTime.Now.AddSeconds(secondsAgo * -1));
+			var result = _humanReadable.DateTime.AsReadable(DateTime.Now.AddSeconds(secondsAgo * -1));
 			Assert.Equal(expected, result);
 		}
 

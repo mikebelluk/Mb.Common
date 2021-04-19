@@ -1,4 +1,6 @@
 ﻿using System;
+using Mb.Common.Contracts.Services.Dates;
+using Mb.Common.Services.Dates;
 
 namespace Mb.Common.Extensions
 {
@@ -7,18 +9,24 @@ namespace Mb.Common.Extensions
 	/// </summary>
 	public static class DateTimeExtensions
 	{
+		#region Static Fields
+
+		private static readonly IDateService _dateService = new DateService();
+
+		#endregion
+
 		#region Between
 
 		/// <summary>
 		/// Checks to see if a date falls between two dates
 		/// </summary>
 		/// <param name="dt">The <see cref="DateTime"/></param>
-		/// <param name="rangeBeg">The start <see cref="DateTime"/></param>
-		/// <param name="rangeEnd">The end <see cref="DateTime"/></param>
+		/// <param name="startDate">The start <see cref="DateTime"/></param>
+		/// <param name="endDate">The end <see cref="DateTime"/></param>
 		/// <returns>True if it falls between the date range, otherwise false</returns>
-		public static bool Between(this DateTime dt, DateTime rangeBeg, DateTime rangeEnd)
+		public static bool Between(this DateTime dt, DateTime startDate, DateTime endDate)
 		{
-			return dt.Ticks >= rangeBeg.Ticks && dt.Ticks <= rangeEnd.Ticks;
+			return _dateService.Between(dt, startDate, endDate);
 		}
 
 		#endregion
@@ -32,11 +40,7 @@ namespace Mb.Common.Extensions
 		/// <returns>The age in years</returns>
 		public static int ToAgeInYears(this DateTime dateTime)
 		{
-			var age = DateTime.Now.Year - dateTime.Year;
-			if (DateTime.Now < dateTime.AddYears(age))
-				age--;
-
-			return age;
+			return _dateService.ToAgeInYears(dateTime);
 		}
 
 		#endregion
@@ -47,7 +51,7 @@ namespace Mb.Common.Extensions
 		/// <para>
 		/// Determines whether the date specified is a working day.
 		/// </para>
-		/// 
+		///
 		/// <para>
 		/// NOTE: This is based on a western working week (Monday - Friday) and does not take into account
 		/// local holidays.
@@ -57,7 +61,7 @@ namespace Mb.Common.Extensions
 		/// <returns>True if it's a working day, otherwise false</returns>
 		public static bool IsWorkingDay(this DateTime date)
 		{
-			return date.DayOfWeek != DayOfWeek.Saturday && date.DayOfWeek != DayOfWeek.Sunday;
+			return _dateService.IsWorkingDay(date);
 		}
 
 		/// <summary>
@@ -67,7 +71,7 @@ namespace Mb.Common.Extensions
 		/// <returns>True if falls on a weekend, otherwise false</returns>
 		public static bool IsWeekend(this DateTime date)
 		{
-			return date.DayOfWeek == DayOfWeek.Saturday || date.DayOfWeek == DayOfWeek.Sunday;
+			return _dateService.IsWeekend(date);
 		}
 
 		/// <summary>
@@ -77,14 +81,7 @@ namespace Mb.Common.Extensions
 		/// <returns>A <see cref="DateTime"/> for the next working days</returns>
 		public static DateTime NextWorkday(this DateTime date)
 		{
-			var nextDay = date.AddDays(1);
-
-			while (!nextDay.IsWorkingDay())
-			{
-				nextDay = nextDay.AddDays(1);
-			}
-
-			return nextDay;
+			return _dateService.NextWorkday(date);
 		}
 
 		#endregion

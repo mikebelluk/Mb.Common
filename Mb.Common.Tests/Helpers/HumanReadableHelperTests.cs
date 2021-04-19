@@ -1,10 +1,17 @@
-﻿using Mb.Common.Helpers;
+﻿using Mb.Common.Contracts.Services.HumanReadable;
+using Mb.Common.Services.HumanReadable;
 using Xunit;
 
 namespace Mb.Common.Tests.Helpers
 {
 	public class HumanReadableHelperTests
 	{
+		#region Static Fields
+
+		private static readonly IHumanReadableService _humanReadable = new HumanReadableService();
+
+		#endregion
+
 		[Theory()]
 		[InlineData(512, "512 bytes")]
 		[InlineData(1024, "1 KB")]
@@ -22,7 +29,7 @@ namespace Mb.Common.Tests.Helpers
 		[InlineData(1024L * 1024 * 1024 * 1024 * 1024 * 1024 * 1.5, "1.5 EB")]
 		public void BytesToHumanReadableSize_TheoryReturnsCorrectValue(long fileSizeBytes, string expected)
 		{
-			var actual = HumanReadableHelper.BytesToHumanReadableSize(fileSizeBytes);
+			var actual = _humanReadable.Bytes.AsReadable(fileSizeBytes);
 			Assert.Equal(expected, actual);
 		}
 	}
